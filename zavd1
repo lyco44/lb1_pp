@@ -1,0 +1,67 @@
+let library = [
+ { title: "1984", author: "Джордж Орвелл", year: 1949, genre:
+"Дистопія", available: true },
+
+ { title: "Гаррі Поттер і філософський камінь", author: "Дж. К. Ролінґ", year: 1997, genre: "Фентезі", available: false },
+ { title: "Володар перснів", author: "Дж. Р. Р. Толкін", year:
+1954, genre: "Фентезі", available: true },
+
+ { title: "Код да Вінчі", author: "Ден Браун", year: 2003,
+genre: "Детектив", available: true },
+
+ { title: "Маленький принц", author: "Антуан де Сент-Екзюпері",
+year: 1943, genre: "Філософія", available: false }
+];
+
+function addBook(library, newBook){
+    library.push(newBook);
+    console.log(`Книга "${newBook.title}" додана до бібліотеки.`);
+}
+
+function removeBook(library, title){
+    let index = library.findIndex(function(book){
+        return book.title === title;
+    });
+
+    if(index != -1){
+        library.splice(index, 1);
+        console.log(`Книга "${title}" видалена з бібліотеки.`);
+    } else {
+        console.log("Книга не знайдена");
+    }
+}
+
+function findBooksByAuthor(library, author){
+    let index = library.findIndex(function(book){
+        return book.author === author;
+    });
+
+    if(index != -1){
+        console.log(`"${library[index].title}"`);
+    } else {
+        console.log("Книга не знайдена");
+    }
+}
+
+function getTotalBooks(library) {
+    console.log(`Кількість книг: ${library.length}`);
+}
+
+function toggleAvailability(library, title) {
+    let index = library.findIndex(function(book) {
+        return book.title === title;
+    });
+
+    if (index !== -1) {
+        library[index].available = !library[index].available;
+        console.log(`Доступність книги "${title}" змінена.`);
+    } else {
+        console.log("Книгу не знайдено.");
+    }
+}
+
+addBook(library, "Відьмак");
+removeBook(library, "1984");
+findBooksByAuthor(library, "Ден Браун");
+getTotalBooks(library);
+toggleAvailability(library, "Маленький принц");
